@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - NetworkingManagerMock
+
 final class NetworkingManagerMock: NetworkingManagerProtocol {
     
     var jsonFileName: String?

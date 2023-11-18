@@ -8,6 +8,8 @@
 #if DEBUG
 import Foundation
 
+// MARK: - MockURLSessionProtocol
+
 class MockURLSessionProtocol: URLProtocol {
     
     static var loadingHandler: (() -> (HTTPURLResponse, Data?))?

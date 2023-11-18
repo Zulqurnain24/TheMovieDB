@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - MovieListViewRow
+
 struct MovieListViewRow: View {
     let movie: Movie
     let onAppear: () -> Void

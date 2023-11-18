@@ -7,12 +7,12 @@
 
 import UIKit
 
+// MARK: - URL+TheMovieDB
+
 extension URL {
     func verifyUrl() -> Bool {
-        if let urlString = self.absoluteString as? String {
-            if let url = NSURL(string: urlString) {
-                return UIApplication.shared.canOpenURL(url as URL)
-            }
+        if let url = NSURL(string: self.absoluteString) {
+            return UIApplication.shared.canOpenURL(url as URL)
         }
         return false
     }

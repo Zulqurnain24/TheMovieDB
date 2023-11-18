@@ -16,6 +16,8 @@ protocol ImageLoaderProtocol: ObservableObject {
     func loadImage() async throws
 }
 
+// MARK: - ImageLoader
+
 @MainActor
 class ImageLoader: ObservableObject, ImageLoaderProtocol {
     

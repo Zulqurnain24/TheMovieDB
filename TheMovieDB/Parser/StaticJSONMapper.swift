@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - StaticJSONMapper
+
 struct StaticJSONMapper {
     
     static func decode<T: Decodable>(file: String, type: T.Type) throws -> T {

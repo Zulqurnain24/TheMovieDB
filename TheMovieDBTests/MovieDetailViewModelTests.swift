@@ -8,6 +8,8 @@
 import XCTest
 @testable import TheMovieDB
 
+// MARK: - MovieRepositoryTests
+
 class MovieDetailViewModelTests: XCTestCase {
     
     var sut: MovieDetailViewModel?
@@ -30,7 +32,7 @@ class MovieDetailViewModelTests: XCTestCase {
         
         await sut?.fetchMovieDetails()
         
-        XCTAssertEqual(sut?.movieDetails, MovieDetails(id: 1, title: "Mocked Title", overview: "Mocked Overview", posterPath: Optional("/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg"), voteAverage: 7.0, homepage: "https://www.oppenheimermovie.com/"))
+        XCTAssertEqual(sut?.movieDetails, MovieDetails(id: 1, title: "Mocked Title", overview: "Mocked Overview", posterPath: Optional("/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg"), voteAverage: 7.0, homepage: "https://www.oppenheimermovie.com/"), "Should fetch correct MovieDetails from the repository")
     }
     
     func testFetchMovieDetailsFromPersistentStore() async {
@@ -48,7 +50,7 @@ class MovieDetailViewModelTests: XCTestCase {
         
         let movieDetailsFromInternet = sut?.movieDetails
         
-        XCTAssertEqual(movieDetailsFromInternet, MovieDetails(id: 1, title: "Mocked Title", overview: "Mocked Overview", posterPath: Optional("/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg"), voteAverage: 7.0, homepage: "https://www.oppenheimermovie.com/"))
+        XCTAssertEqual(movieDetailsFromInternet, MovieDetails(id: 1, title: "Mocked Title", overview: "Mocked Overview", posterPath: Optional("/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg"), voteAverage: 7.0, homepage: "https://www.oppenheimermovie.com/"), "Should fetch correct movie from the repository")
         
         networkMonitorMock.isConnected = false
         
@@ -56,6 +58,6 @@ class MovieDetailViewModelTests: XCTestCase {
         
         let movieDetailsFromPersistentStore = sut?.movieDetails
         
-        XCTAssertEqual(movieDetailsFromPersistentStore, movieDetailsFromInternet)
+        XCTAssertEqual(movieDetailsFromPersistentStore, movieDetailsFromInternet, "Should get the expected movieDetails from persistent store when connection is false")
     }
 }

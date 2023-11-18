@@ -15,6 +15,8 @@ protocol NetworkMonitorProtocol {
     func stopMonitoring()
 }
 
+// MARK: - NetworkMonitor
+
 class NetworkMonitor: NetworkMonitorProtocol {
     private let monitor: NWPathMonitor
     

@@ -8,6 +8,8 @@
 import XCTest
 @testable import TheMovieDB
 
+// MARK: - NetworkMonitorTests
+
 class NetworkMonitorTests: XCTestCase {
     
     var sut: NetworkMonitor?
@@ -24,11 +26,11 @@ class NetworkMonitorTests: XCTestCase {
     
     func testWhenStartMonitoringIsCalledThenIsConnectedIsTrue() {
         sut?.startMonitoring()
-        XCTAssertTrue(sut?.isMonitoring ?? false)
+        XCTAssertTrue(sut?.isMonitoring ?? false, "After startMonitoring() is called should return correct isMonitoring status")
     }
     
     func testWhenStopMonitoringIsCalledThenIsConnectedIsTrue() {
         sut?.stopMonitoring()
-        XCTAssertFalse(sut?.isMonitoring ?? false)
+        XCTAssertFalse(sut?.isMonitoring ?? false, "After stopMonitoring() is called should return correct isMonitoring status")
     }
 }

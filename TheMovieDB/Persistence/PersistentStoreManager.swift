@@ -13,7 +13,7 @@ protocol PersistentStoreManagerProtocol {
     func clearData(_ key: String) async
 }
 
-// MARK: - PersistentStore
+// MARK: - PersistentStoreManager
 
 class PersistentStoreManager: PersistentStoreManagerProtocol {
     

@@ -7,6 +7,8 @@
 
 import CoreFoundation
 
+// MARK: - Constants
+
 enum Constants {
     static let loadingHandlerNotSetError = "Loading handler is not set."
     

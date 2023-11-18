@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - MovieList
+
 struct MovieList<ViewModel: MovieListViewModelProtocol>: View {
     @ObservedObject var viewModel: ViewModel
     

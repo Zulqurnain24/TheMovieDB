@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - PersistentStoreManagerMock
+
 class PersistentStoreManagerMock: PersistentStoreManagerProtocol {
     
     enum PersistentStore: Error {

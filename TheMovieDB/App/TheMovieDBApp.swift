@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - Constants
+
 @main
 struct TheMovieDBApp: App {
     var body: some Scene {

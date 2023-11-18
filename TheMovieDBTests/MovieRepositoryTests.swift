@@ -8,6 +8,8 @@
 import XCTest
 @testable import TheMovieDB
 
+// MARK: - MovieRepositoryTests
+
 class MovieRepositoryTests: XCTestCase {
     
     var sut: MovieRepository?
@@ -28,7 +30,7 @@ class MovieRepositoryTests: XCTestCase {
             
             let movieResponse = try await sut?.getPopularMovies(page: 1)
             
-            XCTAssertEqual(movieResponse, MovieResponse(movies: [TheMovieDB.Movie(id: 123, title: "Mocked Title", voteAverage: 5.5, releaseDate: "2021-10-13", thumbnailPath: "/nohrh9aHNB1ehXmdtTZV5vStzcs.jpg")], totalPages: 1))
+            XCTAssertEqual(movieResponse, MovieResponse(movies: [TheMovieDB.Movie(id: 123, title: "Mocked Title", voteAverage: 5.5, releaseDate: "2021-10-13", thumbnailPath: "/nohrh9aHNB1ehXmdtTZV5vStzcs.jpg")], totalPages: 1), "Should return expected movieResponse")
         } catch {
             Logger.logError(Self.self, error)
         }
@@ -45,7 +47,7 @@ class MovieRepositoryTests: XCTestCase {
             
             let movieDetails = try await sut?.getMovieDetails(for: 872585)
             
-            XCTAssertEqual(movieDetails, MovieDetails(id: 1, title: "Mocked Title", overview: "Mocked Overview", posterPath: Optional("/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg"), voteAverage: 7.0, homepage: "https://www.oppenheimermovie.com/"))
+            XCTAssertEqual(movieDetails, MovieDetails(id: 1, title: "Mocked Title", overview: "Mocked Overview", posterPath: Optional("/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg"), voteAverage: 7.0, homepage: "https://www.oppenheimermovie.com/"), "Should return expected movie detail")
         } catch {
             Logger.logError(Self.self, error)
         }
@@ -63,12 +65,12 @@ class MovieRepositoryTests: XCTestCase {
             
             networkMonitorMock.isConnected = false
             
-            let movieResponse = try await sut?.getPopularMovies(page: 1)
+            _ = try await sut?.getPopularMovies(page: 1)
             
-            XCTAssertEqual(persistentStoreManagerMock.getObject("Movies", [Movie].self), [TheMovieDB.Movie(id: 123, title: "Mocked Title", voteAverage: 5.5, releaseDate: "2021-10-13", thumbnailPath: "/nohrh9aHNB1ehXmdtTZV5vStzcs.jpg")])
+            XCTAssertEqual(persistentStoreManagerMock.getObject("Movies", [Movie].self), [TheMovieDB.Movie(id: 123, title: "Mocked Title", voteAverage: 5.5, releaseDate: "2021-10-13", thumbnailPath: "/nohrh9aHNB1ehXmdtTZV5vStzcs.jpg")], "Should retrieve expected movieResponse from persistent store")
             
         } catch {
-            Logger.logError(Self.self, error)
+            XCTFail("Should receive correct response from the persistentStoreManager")
         }
     }
     
@@ -90,7 +92,7 @@ class MovieRepositoryTests: XCTestCase {
             
             let movieDetailsFromPersistentStore = try await sut?.getMovieDetails(for: 872585)
             
-            XCTAssertEqual(movieDetailsFromNetworkmanager, movieDetailsFromPersistentStore)
+            XCTAssertEqual(movieDetailsFromNetworkmanager, movieDetailsFromPersistentStore, "Should retrieve expected movie details from the persistent store")
         } catch {
             Logger.logError(Self.self, error)
         }

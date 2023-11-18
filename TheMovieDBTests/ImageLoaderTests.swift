@@ -8,6 +8,8 @@
 import XCTest
 @testable import TheMovieDB
 
+// MARK: - ImageLoaderTests
+
 class ImageLoaderTests: XCTestCase {
     
     var sut: ImageLoader?
@@ -27,7 +29,7 @@ class ImageLoaderTests: XCTestCase {
         
         try! await sut?.set(urlString: "/628Dep6AxEtDxjZoGP78TsOxYbK.jpg", type: .thumbnail)
         
-        XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "sampleThumbnail")?.pngData())
+        XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "sampleThumbnail")?.pngData(), "Should return expected image data")
     }
     
     @MainActor func testLoadImageWherePosterIsDownloadedFromInternet() async {
@@ -39,7 +41,7 @@ class ImageLoaderTests: XCTestCase {
         
         try! await sut?.set(urlString: "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg", type: .poster)
         
-        XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "samplePoster")?.pngData())
+        XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "samplePoster")?.pngData(), "Should return expected image data")
     }
     
     @MainActor func testLoadImageWhereThumbnailIsDownloadedFromPersistenceStore() async {
@@ -54,11 +56,11 @@ class ImageLoaderTests: XCTestCase {
         
         try! await sut?.set(urlString: "/628Dep6AxEtDxjZoGP78TsOxYbK.jpg", type: .thumbnail)
         
-        XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "sampleThumbnail")?.pngData())
+        XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "sampleThumbnail")?.pngData(), "Should return expected image data from networkingManager")
         
         let thumbnailData = persistentStoreManagerMock.getObject("/628Dep6AxEtDxjZoGP78TsOxYbK.jpg", Data.self)
         
-        XCTAssertEqual(thumbnailData, UIImage(named: "sampleThumbnail")?.pngData())
+        XCTAssertEqual(thumbnailData, UIImage(named: "sampleThumbnail")?.pngData(), "Should return expected image data from persistentStoreManager")
     }
     
     @MainActor func testLoadImageWherePosterIsDownloadedFromPersistenceStore() async {
@@ -73,10 +75,10 @@ class ImageLoaderTests: XCTestCase {
         
         try! await sut?.set(urlString: "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg", type: .poster)
         
-        XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "samplePoster")?.pngData())
+        XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "samplePoster")?.pngData(), "should return expected data from the networkingManager")
         
         let posterData = persistentStoreManagerMock.getObject("/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg", Data.self)
         
-        XCTAssertEqual(posterData, UIImage(named: "samplePoster")?.pngData())
+        XCTAssertEqual(posterData, UIImage(named: "samplePoster")?.pngData(), "should return expected data from the persistentStoreManager")
     }
 }

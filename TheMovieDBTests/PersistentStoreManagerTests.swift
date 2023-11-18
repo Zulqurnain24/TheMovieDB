@@ -8,6 +8,8 @@
 import XCTest
 @testable import TheMovieDB
 
+// MARK: - PersistentStoreManagerTests
+
 class PersistentStoreManagerTests: XCTestCase {
     
     var sut: PersistentStoreManagerProtocol?
@@ -30,7 +32,7 @@ class PersistentStoreManagerTests: XCTestCase {
         
         let retrievedValue = await sut?.getObject("Movies", [Movie].self)
         
-        XCTAssertEqual(movies, retrievedValue)
+        XCTAssertEqual(movies, retrievedValue, "Persistent store should save and retrieve correct value")
     }
     
     func testPersistentStoreManagerWhenStateIsCleared() async {
@@ -41,12 +43,12 @@ class PersistentStoreManagerTests: XCTestCase {
         
         let retrievedValue = await sut?.getObject("Movies", [Movie].self)
         
-        XCTAssertEqual(movies, retrievedValue)
+        XCTAssertEqual(movies, retrievedValue, "Persistent store should save and retrieve correct value")
         
         await sut?.clearData("Movies")
         
         let updatedValue = await sut?.getObject("Movies", [Movie].self)
         
-        XCTAssertEqual(updatedValue, nil)
+        XCTAssertEqual(updatedValue, nil, "Should clear the persistent store")
     }
 }

@@ -8,9 +8,11 @@
 import XCTest
 @testable import TheMovieDB
 
+// MARK: - ConstantsTest
+
 class ConstantsTest: XCTestCase {
  
-    func testValues() {
+    func testConstantValues() {
         XCTAssertEqual(Constants.loadingHandlerNotSetError, "Loading handler is not set.")
         
         XCTAssertEqual(Constants.movieImageMockUrlString, "https://image.tmdb.org/t/p/w500/628Dep6AxEtDxjZoGP78TsOxYbK.jpg")

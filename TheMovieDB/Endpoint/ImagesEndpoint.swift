@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - MoviesEndpoint
+// MARK: - ImagesEndpoint
 
 enum ImagesEndpoint {
     case getThumbnail(_ name: String)

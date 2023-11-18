@@ -8,6 +8,8 @@
 import XCTest
 @testable import TheMovieDB
 
+// MARK: - URLExtension
+
 class URLExtension: XCTestCase {
  
     func testValidURL() {
