@@ -19,7 +19,7 @@ struct MovieListView<ViewModel: MovieListViewModelProtocol>: View {
                 Text(verbatim: Constants.popularMovies)
                     .font(.largeTitle)
                     .padding([.horizontal, .bottom])
-                    .accessibilityIdentifier(Constants.popularMoviesTextIdentifier)
+                    .accessibilityIdentifier("popularMoviesText")
                 
                 TextField(Constants.searchMovies, text: $viewModel.searchText)
                     .padding([.horizontal])
@@ -29,12 +29,11 @@ struct MovieListView<ViewModel: MovieListViewModelProtocol>: View {
                             await viewModel.filterMovies(by: newState)
                         }
                     }
-                    .accessibilityIdentifier(Constants.searchMoviesTextfieldAccessIdentifier)
+                    .accessibilityIdentifier("searchMoviesTextField")
                 
                 if viewModel.filteredMovies.isEmpty {
                     Text(verbatim: Constants.connectToInternet)
                         .padding()
-                        .accessibilityIdentifier(Constants.connectToInternetTextAccessIdentifier)
                     Spacer()
                         .frame(maxHeight: .infinity)
                 } else {

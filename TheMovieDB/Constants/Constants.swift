@@ -33,13 +33,7 @@ enum Constants {
     static let detailViewImageHeight = CGFloat(150)
     
     static let detailViewOverviewTitle = "Overview:"
-    
-    static let detailViewOverviewLabelIdentifier = "overviewLabelText"
-    
-    static let detailViewOverviewValueIdentifier = "overviewValueText"
-    
-    static let detailViewRatingTextIdentifier = "ratingText"
-    
+
     static let detailViewVistHomeButtonTitle = "Visit Homepage"
     
     static let movieMockId = Int(123)
@@ -47,11 +41,7 @@ enum Constants {
     static let detailViewVStackVerticalPaddingPercentageWithRespectToGeometry = 0.15
    
     static let detailViewVStackHorizontalPaddingPercentageWithRespectToGeometry = 0.03
-    
-    static let movieListIdentifier = "moviesList"
-    
-    static let detailViewVistHomeButtonTitleIdentifier = "visitHomepageLink"
-    
+   
     static let movieMockTitle = "Mocked Title"
     
     static let movieMockRating = 5.5
@@ -92,18 +82,10 @@ enum Constants {
     
     static let popularMovies = "Popular Movies"
     
-    static let popularMoviesTextIdentifier = "popularMoviesText"
-    
     static let searchMovies = "Search movies"
-    
-    static let searchMoviesTextfieldAccessIdentifier = "searchMoviesTextField"
-    
+
     static let connectToInternet = "Please restore the internet connection and try again later"
-    
-    static let connectToInternetTextAccessIdentifier = "restoreNetConnectionText"
-    
-    static let detailViewMovieTitleAccessIdentifier = "movieTitleText"
-    
+
     static let logStart = "<-Log-Start->"
     
     static let logEnd = "<-Log-End->"

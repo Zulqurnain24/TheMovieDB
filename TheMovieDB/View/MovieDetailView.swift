@@ -25,29 +25,29 @@ struct MovieDetailView<ViewModel: MovieDetailViewModelProtocol>: View {
                         .font(.title)
                         .lineLimit(nil)
                         .multilineTextAlignment(.leading)
-                        .accessibilityIdentifier(Constants.detailViewMovieTitleAccessIdentifier)
+                        .accessibilityIdentifier("movieTitleText")
                     
                     MovieImageView(imageUrl: ImagesEndpoint.getPosterImage(viewModel.movieDetails?.posterPath ?? "").url, imageLoader: TMDBFactory.createImageLoader(), imageHeight: Constants.detailViewImageHeight, imageWidth: .infinity, cornerRadius: Constants.cornerRadius)
                     
                     Text(Constants.detailViewOverviewTitle)
                         .font(.headline)
-                        .accessibilityIdentifier(Constants.detailViewOverviewLabelIdentifier)
+                        .accessibilityIdentifier("overviewLabelText")
                     
                     Text(viewModel.movieDetails?.overview ?? "")
                         .font(.body)
-                        .accessibilityIdentifier(Constants.detailViewOverviewValueIdentifier)
+                        .accessibilityIdentifier("overviewValueText")
                     
                     Spacer()
                     
                     Text("\(Constants.ratingLabel) \(String(format: "%.1f", viewModel.movie.voteAverage))")
                         .font(.headline)
-                        .accessibilityIdentifier(Constants.detailViewRatingTextIdentifier)
+                        .accessibilityIdentifier("ratingText")
                     
                     Spacer()
                     
                     if let url = URL(string: viewModel.movieDetails?.homepage ?? "") {
                         Link(Constants.detailViewVistHomeButtonTitle, destination: url)
-                            .accessibilityIdentifier(Constants.detailViewVistHomeButtonTitleIdentifier)
+                            .accessibilityIdentifier("visitHomepageLink")
                     }
                     
                 }

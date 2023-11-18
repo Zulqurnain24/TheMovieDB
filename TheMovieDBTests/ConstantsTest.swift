@@ -35,12 +35,6 @@ class ConstantsTest: XCTestCase {
         
         XCTAssertEqual(Constants.detailViewOverviewTitle, "Overview:")
         
-        XCTAssertEqual(Constants.detailViewOverviewLabelIdentifier, "overviewLabelText")
-     
-        XCTAssertEqual(Constants.detailViewOverviewValueIdentifier, "overviewValueText")
-        
-        XCTAssertEqual(Constants.detailViewRatingTextIdentifier, "ratingText")
-        
         XCTAssertEqual(Constants.detailViewVistHomeButtonTitle, "Visit Homepage")
         
         XCTAssertEqual(Constants.movieMockId, Int(123))
@@ -48,11 +42,7 @@ class ConstantsTest: XCTestCase {
         XCTAssertEqual(Constants.detailViewVStackVerticalPaddingPercentageWithRespectToGeometry, 0.15)
         
         XCTAssertEqual(Constants.detailViewVStackHorizontalPaddingPercentageWithRespectToGeometry, 0.03)
-       
-        XCTAssertEqual(Constants.movieListIdentifier, "moviesList")
-        
-        XCTAssertEqual(Constants.detailViewVistHomeButtonTitleIdentifier, "visitHomepageLink")
-     
+
         XCTAssertEqual(Constants.movieMockTitle, "Mocked Title")
         
         XCTAssertEqual(Constants.movieMockRating, 5.5)
@@ -92,18 +82,10 @@ class ConstantsTest: XCTestCase {
         XCTAssertEqual(Constants.decodingErrorLabel, "Decoding error:")
         
         XCTAssertEqual(Constants.popularMovies, "Popular Movies")
-        
-        XCTAssertEqual(Constants.popularMoviesTextIdentifier, "popularMoviesText")
-        
+     
         XCTAssertEqual(Constants.searchMovies, "Search movies")
-        
-        XCTAssertEqual(Constants.searchMoviesTextfieldAccessIdentifier, "searchMoviesTextField")
-        
+      
         XCTAssertEqual(Constants.connectToInternet, "Please restore the internet connection and try again later")
-        
-        XCTAssertEqual(Constants.connectToInternetTextAccessIdentifier, "restoreNetConnectionText")
-        
-        XCTAssertEqual(Constants.detailViewMovieTitleAccessIdentifier, "movieTitleText")
     }
     
 }

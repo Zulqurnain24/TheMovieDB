@@ -25,7 +25,7 @@ struct MovieList<ViewModel: MovieListViewModelProtocol>: View {
             }
         }
         .scrollIndicators(.hidden, axes: [.vertical, .horizontal])
-        .accessibilityIdentifier(Constants.movieListIdentifier)
+        .accessibilityIdentifier("moviesList")
     }
 }
 
