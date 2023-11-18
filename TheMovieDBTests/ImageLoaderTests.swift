@@ -25,7 +25,7 @@ class ImageLoaderTests: XCTestCase {
         
         sut = ImageLoader(persistentStoreManager: TMDBFactory.createPersistentStoreManagerMock(), networkingManager: networkingManagerMock)
         
-        await sut?.set(urlString: "/628Dep6AxEtDxjZoGP78TsOxYbK.jpg", type: .thumbnail)
+        try! await sut?.set(urlString: "/628Dep6AxEtDxjZoGP78TsOxYbK.jpg", type: .thumbnail)
         
         XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "sampleThumbnail")?.pngData())
     }
@@ -37,7 +37,7 @@ class ImageLoaderTests: XCTestCase {
         
         sut = ImageLoader(persistentStoreManager: TMDBFactory.createPersistentStoreManagerMock(), networkingManager: networkingManagerMock)
         
-        await sut?.set(urlString: "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg", type: .poster)
+        try! await sut?.set(urlString: "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg", type: .poster)
         
         XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "samplePoster")?.pngData())
     }
@@ -52,7 +52,7 @@ class ImageLoaderTests: XCTestCase {
         
         sut = ImageLoader(persistentStoreManager: persistentStoreManagerMock, networkingManager: networkingManagerMock)
         
-        await sut?.set(urlString: "/628Dep6AxEtDxjZoGP78TsOxYbK.jpg", type: .thumbnail)
+        try! await sut?.set(urlString: "/628Dep6AxEtDxjZoGP78TsOxYbK.jpg", type: .thumbnail)
         
         XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "sampleThumbnail")?.pngData())
         
@@ -71,7 +71,7 @@ class ImageLoaderTests: XCTestCase {
         
         sut = ImageLoader(persistentStoreManager: persistentStoreManagerMock, networkingManager: networkingManagerMock)
         
-        await sut?.set(urlString: "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg", type: .poster)
+        try! await sut?.set(urlString: "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg", type: .poster)
         
         XCTAssertEqual(sut?.image?.pngData(), UIImage(named: "samplePoster")?.pngData())
         

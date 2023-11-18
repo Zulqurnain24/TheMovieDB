@@ -35,7 +35,7 @@ class ConstantsTest: XCTestCase {
         
         XCTAssertEqual(Constants.detailViewOverviewTitle, "Overview:")
         
-        XCTAssertEqual(Constants.detailViewOverviewTitleIdentifier, "overviewLabelText")
+        XCTAssertEqual(Constants.detailViewOverviewLabelIdentifier, "overviewLabelText")
      
         XCTAssertEqual(Constants.detailViewOverviewValueIdentifier, "overviewValueText")
         
