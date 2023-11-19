@@ -36,7 +36,7 @@ struct MovieListView<ViewModel: MovieListViewModelProtocol>: View {
                         .padding()
                     Spacer()
                         .frame(maxHeight: .infinity)
-                } else {
+                } else if let viewModel = viewModel as? MovieListViewModel {
                     TMDBFactory.createMovieList(viewModel: viewModel)
                 }
             }

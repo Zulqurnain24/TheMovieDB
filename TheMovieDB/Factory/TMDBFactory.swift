@@ -8,10 +8,72 @@
 import Foundation
 import SwiftUI
 
+protocol TMDBFactoryProtocol {
+    static func createDecoder() -> JSONDecoder 
+    
+    @MainActor static func createMovieImageView(thumbnailPathUrl: URL?, imageHeight: CGFloat, imageWidth: CGFloat, cornerRadius: CGFloat) -> MovieImageView
+    
+    @MainActor static func createMovieImageViewMock() -> MovieImageView
+    
+    static func createNetworkingManagerMock() -> NetworkingManagerMock
+    
+    static func createNetworkingManager() -> NetworkingManager
+    
+    @MainActor static func createMovieService() -> MovieService
+    
+    @MainActor static func createPersistentStoreManager() -> PersistentStoreManager
+    
+    @MainActor static func createNetworkMonitor() -> NetworkMonitorProtocol
+    
+    @MainActor static func createMovieRepository() -> MovieRepository
+    
+    @MainActor static func createMovieListViewModel() -> MovieListViewModel
+    
+    @MainActor static func createMovieDetailViewModel(movie: Movie) -> MovieDetailViewModel
+    
+    @MainActor static func createMovieDetailView(movie: Movie) -> MovieDetailView<MovieDetailViewModel>
+    
+    @MainActor static func createMovieListView() -> MovieListView<MovieListViewModel>
+    
+    @MainActor static func createMovieListViewMock() -> MovieListView<MovieListViewModel>
+    
+    static func createMovieListRow(movie: Movie) -> MovieListRow
+    
+    @MainActor static func createImageLoader() -> ImageLoader
+    
+    static func createMovieList(viewModel: MovieListViewModel) -> MovieList< MovieListViewModel>
+    
+    static func createMovieListViewRow(movie: Movie, onAppearAction: @escaping () -> Void, onSegue: @escaping () -> Void) -> MovieListViewRow
+    
+    static func createNetworkMonitorMock() -> NetworkMonitorMock
+    
+    static func createMovieMock() -> Movie
+    
+    static func createMovieDetailsMock() -> MovieDetails
+    
+    static func createMovieServiceMock() -> MovieServiceMock
+    
+    static func createMovieRepositoryMock() -> MovieRepositoryProtocol
+    
+    static func createPersistentStoreManagerMock() -> PersistentStoreManagerMock
+    
+    static func createMovieListViewModelMock() -> MovieListViewModel
+    
+    @MainActor static func createMovieDetailViewMock() -> MovieDetailView<MovieDetailViewModel>
+    
+    static func createMovieDetailViewModelMock() -> MovieDetailViewModel
+    
+    @MainActor static func createImageLoaderMock(_ jsonFileName: String) -> ImageLoader
+}
+
 // MARK: - TMDBFactory
 
-class TMDBFactory {
-    
+class TMDBFactory: TMDBFactoryProtocol {
+   
+    static func createMovieDetailViewMock() -> MovieDetailView<MovieDetailViewModel> {
+        MovieDetailView(viewModel: createMovieDetailViewModelMock(), imageLoader: createImageLoaderMock(Constants.movieData))
+    }
+
     static func createDecoder() -> JSONDecoder {
         JSONDecoder()
     }
@@ -56,19 +118,19 @@ class TMDBFactory {
         MovieDetailViewModel(movie: movie, movieRepository: createMovieRepository())
     }
     
-    @MainActor static func createMovieDetailView(movie: Movie) -> some View {
+    @MainActor static func createMovieDetailView(movie: Movie) -> MovieDetailView<MovieDetailViewModel> {
         MovieDetailView(viewModel: createMovieDetailViewModel(movie: movie), imageLoader: ImageLoader(persistentStoreManager: createPersistentStoreManager(), networkingManager: createNetworkingManager()))
     }
     
-    @MainActor static func createMovieListView() -> some View {
+    @MainActor static func createMovieListView() -> MovieListView<MovieListViewModel> {
         MovieListView(viewModel: createMovieListViewModel())
     }
     
-    @MainActor static func createMovieListViewMock() -> some View {
+    @MainActor static func createMovieListViewMock() -> MovieListView<MovieListViewModel> {
         MovieListView(viewModel: createMovieListViewModelMock())
     }
     
-    static func createMovieListRow(movie: Movie) -> some View {
+    static func createMovieListRow(movie: Movie) -> MovieListRow {
         MovieListRow(movie: movie)
     }
     
@@ -76,11 +138,11 @@ class TMDBFactory {
         ImageLoader(persistentStoreManager: createPersistentStoreManager(), networkingManager: createNetworkingManager())
     }
     
-    static func createMovieList(viewModel: some MovieListViewModelProtocol) -> some View {
+    static func createMovieList(viewModel: MovieListViewModel) -> MovieList< MovieListViewModel> {
         MovieList(viewModel: viewModel)
     }
     
-    static func createMovieListViewRow(movie: Movie, onAppearAction: @escaping () -> Void, onSegue: @escaping () -> Void) -> some View {
+    static func createMovieListViewRow(movie: Movie, onAppearAction: @escaping () -> Void, onSegue: @escaping () -> Void) -> MovieListViewRow {
         MovieListViewRow(movie: movie, onAppear: onAppearAction, onSegue: onSegue)
     }
     
@@ -111,11 +173,7 @@ class TMDBFactory {
     static func createMovieListViewModelMock() -> MovieListViewModel {
         MovieListViewModel(movieRepository: createMovieRepositoryMock())
     }
-    
-    @MainActor static func createMovieDetailViewMock() -> some View {
-        MovieDetailView(viewModel: createMovieDetailViewModelMock(), imageLoader: createImageLoaderMock(Constants.movieData))
-    }
-    
+
     static func createMovieDetailViewModelMock() -> MovieDetailViewModel {
         MovieDetailViewModel(movie: createMovieMock(), movieRepository: createMovieRepositoryMock())
     }

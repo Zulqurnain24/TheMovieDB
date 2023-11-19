@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+protocol MovieDetailViewProtocol: View {
+    func updateImageLoader() async throws
+}
+
 // MARK: - MovieDetailView
 
 struct MovieDetailView<ViewModel: MovieDetailViewModelProtocol>: View {
