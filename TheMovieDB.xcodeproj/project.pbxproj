@@ -59,6 +59,7 @@
 		27BB83C32B080AA60075F0D0 /* MovieDataIncorrectJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 27BB83BD2B07FE9E0075F0D0 /* MovieDataIncorrectJson.json */; };
 		27BB83C42B080AA90075F0D0 /* MovieDetailData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27BB83C12B0809A30075F0D0 /* MovieDetailData.json */; };
 		27BB83C62B080C040075F0D0 /* ImageLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB83C52B080C040075F0D0 /* ImageLoaderTests.swift */; };
+		27EA8E5A2B0AD2FF00077F8C /* StaticJSONMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EA8E592B0AD2FF00077F8C /* StaticJSONMapperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 		27BB83BD2B07FE9E0075F0D0 /* MovieDataIncorrectJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MovieDataIncorrectJson.json; sourceTree = "<group>"; };
 		27BB83C12B0809A30075F0D0 /* MovieDetailData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MovieDetailData.json; sourceTree = "<group>"; };
 		27BB83C52B080C040075F0D0 /* ImageLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderTests.swift; sourceTree = "<group>"; };
+		27EA8E592B0AD2FF00077F8C /* StaticJSONMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticJSONMapperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +309,7 @@
 				27B2E1932B0844A700637C24 /* MoviesEndpointTest.swift */,
 				27B2E1952B08473500637C24 /* ImagesEndpointTest.swift */,
 				27B2E19B2B08591400637C24 /* ConstantsTest.swift */,
+				27EA8E592B0AD2FF00077F8C /* StaticJSONMapperTests.swift */,
 			);
 			path = TheMovieDBTests;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				27BB83B82B07F61C0075F0D0 /* NetworkMonitorTests.swift in Sources */,
 				27BB83C62B080C040075F0D0 /* ImageLoaderTests.swift in Sources */,
 				27BB83BC2B07FAB50075F0D0 /* MovieServiceTests.swift in Sources */,
+				27EA8E5A2B0AD2FF00077F8C /* StaticJSONMapperTests.swift in Sources */,
 				27B2E19C2B08591400637C24 /* ConstantsTest.swift in Sources */,
 				27BB83BA2B07F7DC0075F0D0 /* PersistentStoreManagerTests.swift in Sources */,
 				27BB839B2B06998D0075F0D0 /* MovieListViewModelTests.swift in Sources */,
