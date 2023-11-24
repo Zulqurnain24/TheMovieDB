@@ -20,7 +20,8 @@ This is a project which demonstrates the MVVM architecure with repository and fa
 
 ## Tests coverage:
 
-<img width="930" alt="Screenshot 2023-11-18 at 5 49 24 am" src="https://github.com/Zulqurnain24/TheMovieDB/assets/6280238/584e70ae-a56d-4e96-b551-2477af555eb9">
+
+<img width="957" alt="coverage" src="https://github.com/Zulqurnain24/TheMovieDB/assets/6280238/6d22e94f-3c29-4e50-bd7f-b8120ac33a7e">
 
 
 ## Screenshots:
