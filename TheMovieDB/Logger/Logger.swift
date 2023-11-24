@@ -17,13 +17,13 @@ protocol Logging {
 struct Logger: Logging {
     static func logError<T>(_ type: T.Type, _ error: Error) {
 #if DEBUG
-        print("\(Constants.logStart) \n \(Constants.logErrorPrefix) \(type.self)\(Constants.errorlabel) \(error.localizedDescription) \n \(Constants.logEnd)")
+        print("\(Constants.logStart) \n \(Constants.logErrorPrefix) \(type.self)\(Constants.errorlabel) \(error) \n \(Constants.timestampLabel) : \(Date()) \n \(Constants.logEnd) \n ")
 #endif
     }
     
     static func logInfo<T>(_ type: T.Type, _ info: String) {
 #if DEBUG
-        print("\(Constants.logStart) \n [LOG] 💬 in \(type.self) Info: \(info) \n \(Constants.logEnd)")
+        print("\(Constants.logStart) \n \(Constants.logInfoPrefix) \(type.self) Info: \(info) \n \(Constants.timestampLabel) : \(Date()) \n \(Constants.logEnd) ")
 #endif
     }
 }

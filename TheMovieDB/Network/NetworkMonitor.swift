@@ -22,7 +22,7 @@ class NetworkMonitor: NetworkMonitorProtocol {
     
     var isMonitoring = false
     
-    @Published var isConnected = true
+    @Published var isConnected = false
     
     init(monitor: NWPathMonitor = NWPathMonitor()) {
         self.monitor = monitor

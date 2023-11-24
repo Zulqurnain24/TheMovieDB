@@ -10,6 +10,7 @@ import SwiftUI
 
 // MARK: - MovieListView
 
+@MainActor
 struct MovieListView<ViewModel: MovieListViewModelProtocol>: View {
     @StateObject var viewModel: ViewModel
     

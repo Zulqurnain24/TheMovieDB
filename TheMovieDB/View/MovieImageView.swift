@@ -38,6 +38,18 @@ struct MovieImageView: View {
     }
 }
 
+extension MovieImageView: Equatable {
+    static func == (lhs: MovieImageView, rhs: MovieImageView) -> Bool {
+        lhs.imageUrl == rhs.imageUrl
+        &&
+        lhs.imageWidth == rhs.imageWidth
+        &&
+        lhs.imageHeight == rhs.imageHeight
+        &&
+        lhs.cornerRadius == rhs.cornerRadius
+    }
+}
+
 #Preview {
     TMDBFactory.createMovieImageViewMock()
 }

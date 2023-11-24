@@ -23,7 +23,7 @@ protocol TMDBFactoryProtocol {
     
     @MainActor static func createPersistentStoreManager() -> PersistentStoreManager
     
-    @MainActor static func createNetworkMonitor() -> NetworkMonitorProtocol
+    @MainActor static func createNetworkMonitor() -> NetworkMonitor
     
     @MainActor static func createMovieRepository() -> MovieRepository
     
@@ -53,7 +53,7 @@ protocol TMDBFactoryProtocol {
     
     static func createMovieServiceMock() -> MovieServiceMock
     
-    static func createMovieRepositoryMock() -> MovieRepositoryProtocol
+    static func createMovieRepositoryMock() -> MovieRepository
     
     static func createPersistentStoreManagerMock() -> PersistentStoreManagerMock
     
@@ -68,8 +68,7 @@ protocol TMDBFactoryProtocol {
 
 // MARK: - TMDBFactory
 
-class TMDBFactory: TMDBFactoryProtocol {
-   
+enum TMDBFactory: TMDBFactoryProtocol {
     static func createMovieDetailViewMock() -> MovieDetailView<MovieDetailViewModel> {
         MovieDetailView(viewModel: createMovieDetailViewModelMock(), imageLoader: createImageLoaderMock(Constants.movieData))
     }
@@ -102,7 +101,7 @@ class TMDBFactory: TMDBFactoryProtocol {
         PersistentStoreManager()
     }
     
-    @MainActor static func createNetworkMonitor() -> NetworkMonitorProtocol {
+    @MainActor static func createNetworkMonitor() -> NetworkMonitor {
         NetworkMonitor()
     }
     
@@ -162,7 +161,7 @@ class TMDBFactory: TMDBFactoryProtocol {
         MovieServiceMock()
     }
     
-    static func createMovieRepositoryMock() -> MovieRepositoryProtocol {
+    static func createMovieRepositoryMock() -> MovieRepository {
         MovieRepository(movieService: createMovieServiceMock(), persistentStoreManager: createPersistentStoreManagerMock(), networkMonitor: createNetworkMonitorMock())
     }
     

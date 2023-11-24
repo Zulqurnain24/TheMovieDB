@@ -91,4 +91,8 @@ enum Constants {
     static let logStart = "<-Log-Start->"
     
     static let logEnd = "<-Log-End->"
+    
+    static let timestampLabel = "⏰ Log timestamp"
+    
+    static let dataErrorLabel = "Data Error"
 }

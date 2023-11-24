@@ -12,7 +12,7 @@ protocol ImageLoaderProtocol: ObservableObject {
     var image: UIImage? { get set }
     
     func set(urlString: String, type: ImageLoader.ImageType) async throws
-    func populateURL(_ type: ImageLoader.ImageType)
+    func populateURL(_ type: ImageLoader.ImageType) async
     func loadImage() async throws
 }
 
@@ -45,7 +45,7 @@ class ImageLoader: ObservableObject, ImageLoaderProtocol {
         do {
             self.urlString = urlString
             
-            populateURL(type)
+            await populateURL(type)
             
             try await loadImage()
         } catch {
@@ -53,7 +53,7 @@ class ImageLoader: ObservableObject, ImageLoaderProtocol {
         }
     }
     
-    func populateURL(_ type: ImageLoader.ImageType) {
+    func populateURL(_ type: ImageLoader.ImageType) async {
         switch type {
         case .poster:
             self.url = ImagesEndpoint.getPosterImage(self.urlString ?? "").url
@@ -69,7 +69,8 @@ class ImageLoader: ObservableObject, ImageLoaderProtocol {
                 return
             }
             
-            guard let url = self.url else { return }
+            guard let url = self.url,
+                  url.verifyUrl() else { return }
             
             let data = try await networkingManager.request(url: url, session: .shared, type: Data.self)
             

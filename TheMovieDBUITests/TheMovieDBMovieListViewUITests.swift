@@ -39,19 +39,38 @@ final class TheMovieDBMovieListViewUITests: XCTestCase {
         XCTAssertTrue(movieListViewRow.waitForExistence(timeout: 5), "movieListViewRow should be visible")
         
     }
-    
+ 
     func testSearchAndSegueToDetailOfFirstResult() {
+        let searchMoviesTextField = app.textFields["searchMoviesTextField"]
+        XCTAssertTrue(searchMoviesTextField.waitForExistence(timeout: 5), "searchMoviesTextField should be visible")
+        searchMoviesTextField.tap()
+        searchMoviesTextField.typeText("O")
         
-        let app = XCUIApplication()
-        app.textFields["searchMoviesTextField"].tap()
-        app.collectionViews["moviesList"]
-            .staticTexts["Rating: 8.2"].tap()
+        let movieslistCollectionView = XCUIApplication().collectionViews["moviesList"]
+        XCTAssertTrue(movieslistCollectionView.waitForExistence(timeout: 5), "movieTitleText should be visible")
+        movieslistCollectionView.cells.firstMatch.tap()
         
+        let movieTitleText = app.staticTexts["movieTitleText"]
+        XCTAssertTrue(movieTitleText.waitForExistence(timeout: 5), "movieTitleText should be visible")
+        
+        let overviewLabelText = app.staticTexts["overviewLabelText"]
+        XCTAssertTrue(overviewLabelText.waitForExistence(timeout: 5), "overviewLabelText should be visible")
+        
+        let overviewValueText = app.staticTexts["overviewValueText"]
+        XCTAssertTrue(overviewValueText.waitForExistence(timeout: 5), "overviewValueText should be visible")
+        
+        let ratingText = app.staticTexts["ratingText"]
+        XCTAssertTrue(ratingText.waitForExistence(timeout: 5), "ratingText should be visible")
+        
+        let visitHomepageLink = app.buttons["visitHomepageLink"]
+        XCTAssertTrue(visitHomepageLink.waitForExistence(timeout: 5), "ratingText should be visible")
     }
     
     func testInfiniteScrollingOnMovieListAndTapOnMovieListViewRow() {
         
         let movieslistCollectionView = XCUIApplication().collectionViews["moviesList"]
+       
+        XCTAssertTrue(movieslistCollectionView.waitForExistence(timeout: 5), "movieTitleText should be visible")
         
         for _ in 0..<10 {
             movieslistCollectionView.swipeUp()
@@ -62,7 +81,7 @@ final class TheMovieDBMovieListViewUITests: XCTestCase {
         
         let movieListView = XCUIApplication().collectionViews["moviesList"]
         
-        movieListView.buttons["Oppenheimer, Rating: 8.2, Release Date: 2023-07-19"].tap()
+        movieListView.cells.firstMatch.tap()
         
         let movieTitleText = app.staticTexts["movieTitleText"]
         XCTAssertTrue(movieTitleText.waitForExistence(timeout: 5), "movieTitleText should be visible")
@@ -85,7 +104,7 @@ final class TheMovieDBMovieListViewUITests: XCTestCase {
     func testSegueToDetailViewAndNavigateBack() {
         let movieListView = XCUIApplication().collectionViews["moviesList"]
         
-        movieListView.buttons["Oppenheimer, Rating: 8.2, Release Date: 2023-07-19"].tap()
+        movieListView.cells.firstMatch.tap()
         
         let movieTitleText = app.staticTexts["movieTitleText"]
         XCTAssertTrue(movieTitleText.waitForExistence(timeout: 5), "movieTitleText should be visible")

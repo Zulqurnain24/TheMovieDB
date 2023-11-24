@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-protocol MovieDetailViewProtocol: View {
+protocol MovieDetailViewProtocol: View, Equatable {
     func updateImageLoader() async throws
 }
 
 // MARK: - MovieDetailView
 
-struct MovieDetailView<ViewModel: MovieDetailViewModelProtocol>: View {
+@MainActor
+struct MovieDetailView<ViewModel: MovieDetailViewModelProtocol>: MovieDetailViewProtocol {
+    
     @StateObject var viewModel: ViewModel
     @State private var size: CGSize = .zero
     var imageLoader: ImageLoader
@@ -30,7 +32,7 @@ struct MovieDetailView<ViewModel: MovieDetailViewModelProtocol>: View {
                         .lineLimit(nil)
                         .multilineTextAlignment(.leading)
                         .accessibilityIdentifier("movieTitleText")
-                    
+
                     TMDBFactory.createMovieImageView(pathUrl:   ImagesEndpoint.getPosterImage(viewModel.movieDetails?.posterPath ?? "").url, imageHeight: Constants.detailViewImageHeight, imageWidth: .infinity, cornerRadius: Constants.cornerRadius)
                     
                     Text(Constants.detailViewOverviewTitle)
@@ -62,16 +64,30 @@ struct MovieDetailView<ViewModel: MovieDetailViewModelProtocol>: View {
             .ignoresSafeArea()
             .onAppear {
                 Task {
-                    size = geometry.size
-                    await viewModel.fetchMovieDetails()
-                    try await updateImageLoader()
+                    do {
+                        size = geometry.size
+                        await viewModel.fetchMovieDetails()
+                        try await updateImageLoader()
+                    } catch {
+                        Logger.logError(Self.self, error)
+                    }
                 }
             }
         }
     }
     
     func updateImageLoader() async throws {
-        try await self.imageLoader.set(urlString: viewModel.movieDetails?.posterPath ?? "", type: .poster)
+        do {
+            try await self.imageLoader.set(urlString: viewModel.movieDetails?.posterPath ?? "", type: .poster)
+        } catch {
+            Logger.logError(Self.self, error)
+        }
+    }
+}
+
+extension MovieDetailView: Equatable {
+    static func == (lhs: MovieDetailView<ViewModel>, rhs: MovieDetailView<ViewModel>) -> Bool {
+        lhs.viewModel.movie.id == rhs.viewModel.movie.id
     }
 }
 

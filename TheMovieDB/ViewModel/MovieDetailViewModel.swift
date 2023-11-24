@@ -16,7 +16,8 @@ protocol MovieDetailViewModelProtocol: ObservableObject {
 
 // MARK: - MovieDetailViewModel
 
-class MovieDetailViewModel: MovieDetailViewModelProtocol {
+final class MovieDetailViewModel: MovieDetailViewModelProtocol {
+
     @Published var movie: Movie
     @Published var movieDetails: MovieDetails?
 

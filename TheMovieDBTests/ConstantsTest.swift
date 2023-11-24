@@ -88,6 +88,8 @@ class ConstantsTest: XCTestCase {
         XCTAssertEqual(Constants.searchMovies, "Search movies")
       
         XCTAssertEqual(Constants.connectToInternet, "Please restore the internet connection and try again later")
+        
+        XCTAssertEqual(Constants.timestampLabel, "⏰ Log timestamp")
     }
     
 }

@@ -16,10 +16,14 @@ protocol NetworkingManagerProtocol {
 
 final class NetworkingManager: NetworkingManagerProtocol {
     
+    let decoder: JSONDecoder
+    
     static let shared = NetworkingManager()
     
-    private init() {}
-    
+    private init(decoder: JSONDecoder = TMDBFactory.createDecoder()) {
+        self.decoder = decoder
+    }
+   
     func request<T: Codable>(url: URL, session: URLSession = .shared, type: T.Type) async throws -> T {
         
         guard url.verifyUrl() else {
@@ -37,7 +41,10 @@ final class NetworkingManager: NetworkingManagerProtocol {
                 throw NetworkingError.invalidStatusCode(statusCode: statusCode ?? 0)
             }
             
-            let decoder = JSONDecoder()
+            guard data.count != 0 else {
+                throw NetworkingError.dataError
+            }
+            
             let res = try decoder.decode(T.self, from: data)
             
             Logger.logInfo(Self.self, "successfully decoded response \(res)")
@@ -54,6 +61,7 @@ extension NetworkingManager {
         case invalidUrl
         case invalidStatusCode(statusCode: Int)
         case decodingError(description: String)
+        case dataError
     }
 }
 
@@ -81,6 +89,8 @@ extension NetworkingManager.NetworkingError {
             return Constants.networkInvalidStatusCode
         case .decodingError(let description):
             return "\(Constants.decodingErrorLabel) \(description)"
+        case .dataError:
+            return "\(Constants.dataErrorLabel)"
         }
     }
 }

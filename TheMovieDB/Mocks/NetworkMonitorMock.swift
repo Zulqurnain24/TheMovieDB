@@ -10,6 +10,7 @@ import Foundation
 // MARK: - NetworkMonitorMock
 
 class NetworkMonitorMock: NetworkMonitorProtocol {
+    
     @Published var isConnected = false
     var isMonitoring: Bool
     

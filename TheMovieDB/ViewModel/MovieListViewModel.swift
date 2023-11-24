@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol MovieListViewModelProtocol: ObservableObject {
+protocol MovieListViewModelProtocol: ObservableObject, Equatable {
     var movies: [Movie] { get set }
     var filteredMovies: [Movie] { get set }
     var searchText: String { get set }

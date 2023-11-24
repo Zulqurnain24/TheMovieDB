@@ -37,7 +37,10 @@ class ImageLoaderTests: XCTestCase {
         
         networkingManagerMock.imageData = UIImage(named: "samplePoster")?.pngData()
         
-        sut = ImageLoader(persistentStoreManager: TMDBFactory.createPersistentStoreManagerMock(), networkingManager: networkingManagerMock)
+        let persistentStoreManagerMock = TMDBFactory.createPersistentStoreManagerMock()
+        persistentStoreManagerMock.clearData("/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg")
+        
+        sut = ImageLoader(persistentStoreManager: persistentStoreManagerMock, networkingManager: networkingManagerMock)
         
         try! await sut?.set(urlString: "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg", type: .poster)
         
