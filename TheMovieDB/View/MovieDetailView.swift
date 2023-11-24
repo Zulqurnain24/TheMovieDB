@@ -31,7 +31,7 @@ struct MovieDetailView<ViewModel: MovieDetailViewModelProtocol>: View {
                         .multilineTextAlignment(.leading)
                         .accessibilityIdentifier("movieTitleText")
                     
-                    MovieImageView(imageUrl: ImagesEndpoint.getPosterImage(viewModel.movieDetails?.posterPath ?? "").url, imageLoader: TMDBFactory.createImageLoader(), imageHeight: Constants.detailViewImageHeight, imageWidth: .infinity, cornerRadius: Constants.cornerRadius)
+                    TMDBFactory.createMovieImageView(pathUrl:   ImagesEndpoint.getPosterImage(viewModel.movieDetails?.posterPath ?? "").url, imageHeight: Constants.detailViewImageHeight, imageWidth: .infinity, cornerRadius: Constants.cornerRadius)
                     
                     Text(Constants.detailViewOverviewTitle)
                         .font(.headline)

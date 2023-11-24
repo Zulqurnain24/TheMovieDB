@@ -11,7 +11,7 @@ import SwiftUI
 protocol TMDBFactoryProtocol {
     static func createDecoder() -> JSONDecoder 
     
-    @MainActor static func createMovieImageView(thumbnailPathUrl: URL?, imageHeight: CGFloat, imageWidth: CGFloat, cornerRadius: CGFloat) -> MovieImageView
+    @MainActor static func createMovieImageView(pathUrl: URL?, imageHeight: CGFloat, imageWidth: CGFloat, cornerRadius: CGFloat) -> MovieImageView
     
     @MainActor static func createMovieImageViewMock() -> MovieImageView
     
@@ -78,8 +78,8 @@ class TMDBFactory: TMDBFactoryProtocol {
         JSONDecoder()
     }
     
-    @MainActor static func createMovieImageView(thumbnailPathUrl: URL?, imageHeight: CGFloat, imageWidth: CGFloat, cornerRadius: CGFloat) -> MovieImageView {
-        MovieImageView(imageUrl: thumbnailPathUrl, imageLoader: createImageLoader(), imageHeight: imageHeight, imageWidth: imageWidth, cornerRadius: cornerRadius)
+    @MainActor static func createMovieImageView(pathUrl: URL?, imageHeight: CGFloat, imageWidth: CGFloat, cornerRadius: CGFloat) -> MovieImageView {
+        MovieImageView(imageUrl: pathUrl, imageLoader: createImageLoader(), imageHeight: imageHeight, imageWidth: imageWidth, cornerRadius: cornerRadius)
     }
     
     @MainActor static func createMovieImageViewMock() -> MovieImageView {

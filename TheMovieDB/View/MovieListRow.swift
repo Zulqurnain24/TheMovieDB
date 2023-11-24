@@ -20,7 +20,7 @@ struct MovieListRow: View {
     
     var body: some View {
         HStack {
-            TMDBFactory.createMovieImageView(thumbnailPathUrl: ImagesEndpoint.getThumbnail(movie.thumbnailPath ?? "").url, imageHeight: Constants.thumbnailDimension, imageWidth: Constants.thumbnailDimension, cornerRadius: Constants.cornerRadius)
+            TMDBFactory.createMovieImageView(pathUrl: ImagesEndpoint.getThumbnail(movie.thumbnailPath ?? "").url, imageHeight: Constants.thumbnailDimension, imageWidth: Constants.thumbnailDimension, cornerRadius: Constants.cornerRadius)
             
             VStack(alignment: .leading, spacing: Constants.smallSpacing) {
                 Text(movie.title)
