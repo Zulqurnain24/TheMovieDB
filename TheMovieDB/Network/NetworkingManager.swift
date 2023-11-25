@@ -40,18 +40,14 @@ final class NetworkingManager: NetworkingManagerProtocol {
                 let statusCode = (response as? HTTPURLResponse)?.statusCode
                 throw NetworkingError.invalidStatusCode(statusCode: statusCode ?? 0)
             }
-            
-            guard data.count != 0 else {
-                throw NetworkingError.dataError
-            }
-            
+        
             let res = try decoder.decode(T.self, from: data)
             
             Logger.logInfo(Self.self, "successfully decoded response \(res)")
             
             return res
         } catch {
-            throw NetworkingError.decodingError(description: error.localizedDescription)
+            throw NetworkingError.decodingError(description: "\(error)")
         }
     }
 }
@@ -61,7 +57,6 @@ extension NetworkingManager {
         case invalidUrl
         case invalidStatusCode(statusCode: Int)
         case decodingError(description: String)
-        case dataError
     }
 }
 
@@ -89,8 +84,6 @@ extension NetworkingManager.NetworkingError {
             return Constants.networkInvalidStatusCode
         case .decodingError(let description):
             return "\(Constants.decodingErrorLabel) \(description)"
-        case .dataError:
-            return "\(Constants.dataErrorLabel)"
         }
     }
 }

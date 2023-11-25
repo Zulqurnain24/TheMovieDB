@@ -52,6 +52,7 @@ class MovieServiceTests: XCTestCase {
     
     func testgetMovieDetailsWhenConnectedToInternetAndJsonIsCorrect() async {
         let networkingManager = NetworkingManagerMock.shared
+        networkingManager.imageData = nil
         networkingManager.jsonFileName = "MovieDetailData"
         
         sut = MovieService(networkingManager: networkingManager, decoder: TMDBFactory.createDecoder())
