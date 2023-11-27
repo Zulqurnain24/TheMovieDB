@@ -1,6 +1,12 @@
 # TheMovieDB
 This is a project which demonstrates the MVVM architecure with repository and factory pattern using power of structured concurrency of swift.
 
+## Repository Pattern System Diagram:
+
+
+<img width="686" alt="Screenshot 2023-11-27 at 2 16 57 pm" src="https://github.com/Zulqurnain24/TheMovieDB/assets/6280238/a7d35dfb-b5b3-4b51-808f-f3ebf106d9ef">
+
+
 ## Features:
 
 (1)Browse popular movies
