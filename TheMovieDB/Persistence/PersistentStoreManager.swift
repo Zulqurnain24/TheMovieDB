@@ -16,51 +16,51 @@ protocol PersistentStoreManagerProtocol {
 // MARK: - PersistentStoreManager
 
 class PersistentStoreManager: PersistentStoreManagerProtocol {
-    
+
     enum PersistentStore: Error {
         case decodingError
     }
-    
+
     static let shared = PersistentStoreManager()
-    
+
     func setObject<T: Encodable>(_ key: String, value: T) {
         let updatedkey = key
         let encoder = JSONEncoder()
-        
-        guard let encoded = try? encoder.encode(value) else { 
+
+        guard let encoded = try? encoder.encode(value) else {
             Logger.logError(Self.self, PersistentStore.decodingError)
             return
         }
-        
+
         UserDefaults.standard.set(encoded, forKey: updatedkey)
-        
+
         Logger.logInfo(Self.self, "setObject<T: Encodable>(_ key: \(key), value: \(value)")
     }
-    
+
     func getObject<T: Decodable>(_ key: String, _ type: T.Type) -> T? {
         let updatedkey = key
         let decoder = JSONDecoder()
         var value: T?
         if let data = UserDefaults.standard.data(forKey: updatedkey) {
             guard let decodedValue = try? decoder.decode(type, from: data) else {
-                
+
                 Logger.logInfo(Self.self, "Unable to decode the value - getObject<T: Decodable>(_ key: \(key), _ type: \(type)")
-                
+
                 return nil
             }
             value = decodedValue
         }
-        
+
         Logger.logInfo(Self.self, "getObject<T: Decodable>(_ key: \(key), _ type: \(type)")
-        
+
         return value
     }
-    
+
     func clearData(_ key: String) {
         let updatedkey = key
         UserDefaults.standard.removeObject(forKey: updatedkey)
         UserDefaults.standard.synchronize()
-        
+
         Logger.logInfo(Self.self, "clear data for key \(key)")
     }
 }

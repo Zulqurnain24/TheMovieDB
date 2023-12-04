@@ -10,15 +10,15 @@ import Foundation
 // MARK: - NetworkingManagerMock
 
 final class NetworkingManagerMock: NetworkingManagerProtocol {
-    
+
     var jsonFileName: String?
     var imageData: Data?
-    
+
     static let shared = NetworkingManagerMock()
-    
+
     private init() {}
-    
-    func request<T>(url: URL, session: URLSession, type: T.Type) async throws -> T where T : Decodable, T : Encodable {
+
+    func request<T>(url: URL, session: URLSession, type: T.Type) async throws -> T where T: Decodable, T: Encodable {
         do {
             if let jsonFileName = jsonFileName {
                 do {
@@ -33,10 +33,10 @@ final class NetworkingManagerMock: NetworkingManagerProtocol {
         } catch {
             throw error
         }
-        
+
         throw MovieService.NetworkError.decodingError
     }
-    
+
 }
 
 extension NetworkingManagerMock {
@@ -48,11 +48,11 @@ extension NetworkingManagerMock {
 
 private extension NetworkingManagerMock {
     func buildRequest(from url: URL) -> URLRequest {
-        
+
         var request = URLRequest(url: url)
-        
+
         request.httpMethod = Constants.getRequestType
-        
+
         return request
     }
 }

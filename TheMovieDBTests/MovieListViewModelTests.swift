@@ -27,6 +27,7 @@ class MovieListViewModelTests: XCTestCase {
     func testFetchMoviesWhenInternetAvailable() async throws {
 
         let movie1 = Movie(id: 1, title: "Avatar 2", voteAverage: 5.5, releaseDate: "2024-10-15", thumbnailPath: "/nohrh9aHNB1ehXmdtTZV5vStzcs.jpg")
+        
         let movie2 = Movie(id: 2, title: "Inception", voteAverage: 3.5, releaseDate: "2024-10-25", thumbnailPath: "/nohrh9aHNB1ehXmdtTZV5vStzcr.jpg")
         
         let movieServiceMock = MovieServiceMock(movieList: [movie1, movie2], totalPages: 1)

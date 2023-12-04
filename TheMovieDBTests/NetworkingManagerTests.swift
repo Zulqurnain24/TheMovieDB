@@ -44,7 +44,7 @@ class NetworkingManagerTests: XCTestCase {
             return (response!, data)
         }
         
-        let res = try await NetworkingManager.shared.request(url: self.url, type: MovieResponse.self)
+        let res = try await NetworkingManager.shared.request(url: self.url, session: session, type: MovieResponse.self)
       
         XCTAssertNotNil(res, "The returned response should not be nil")
     }
@@ -62,7 +62,7 @@ class NetworkingManagerTests: XCTestCase {
         }
         
         do {
-            _ = try await NetworkingManager.shared.request(url: self.url, type: MovieResponse.self)
+            _ = try await NetworkingManager.shared.request(url: self.url, session: session, type: MovieResponse.self)
         } catch {
             
             guard let networkingError = error as? NetworkingManager.NetworkingError else {
@@ -92,7 +92,7 @@ class NetworkingManagerTests: XCTestCase {
         }
         
         do {
-            _ = try await NetworkingManager.shared.request(url: self.url, type: MovieResponse.self)
+            _ = try await NetworkingManager.shared.request(url: self.url, session: session, type: MovieResponse.self)
         } catch {
             
             guard let networkingError = error as? NetworkingManager.NetworkingError else {

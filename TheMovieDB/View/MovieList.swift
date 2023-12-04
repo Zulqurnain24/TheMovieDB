@@ -11,7 +11,7 @@ import SwiftUI
 
 struct MovieList<ViewModel: MovieListViewModelProtocol>: View {
     @ObservedObject var viewModel: ViewModel
-    
+
     var body: some View {
         List(viewModel.filteredMovies.unique(), id: \.id) { movie in
             TMDBFactory.createMovieListViewRow(movie: movie) {

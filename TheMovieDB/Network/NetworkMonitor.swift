@@ -19,35 +19,36 @@ protocol NetworkMonitorProtocol {
 
 class NetworkMonitor: NetworkMonitorProtocol {
     private let monitor: NWPathMonitor
-    
+
     var isMonitoring = false
-    
+
     @Published var isConnected = false
-    
+
+    private let queue: DispatchQueue = DispatchQueue(label: "NetworkMonitor")
+
     init(monitor: NWPathMonitor = NWPathMonitor()) {
         self.monitor = monitor
-        
+
         startMonitoring()
     }
-    
+
     deinit {
         stopMonitoring()
     }
-    
+
     func startMonitoring() {
         guard !isMonitoring else { return }
-        
+
         monitor.pathUpdateHandler = { [weak self] path in
             DispatchQueue.main.async {
                 self?.isConnected = path.status == .satisfied
             }
         }
-        
-        let queue = DispatchQueue(label: "NetworkMonitor")
+
         monitor.start(queue: queue)
         isMonitoring = true
     }
-    
+
     func stopMonitoring() {
         monitor.cancel()
         isMonitoring = false

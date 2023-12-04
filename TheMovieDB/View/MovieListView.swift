@@ -12,8 +12,8 @@ import SwiftUI
 
 @MainActor
 struct MovieListView<ViewModel: MovieListViewModelProtocol>: View {
-    @StateObject var viewModel: ViewModel
-    
+    @ObservedObject var viewModel: ViewModel
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -21,7 +21,7 @@ struct MovieListView<ViewModel: MovieListViewModelProtocol>: View {
                     .font(.largeTitle)
                     .padding([.horizontal, .bottom])
                     .accessibilityIdentifier("popularMoviesText")
-                
+
                 TextField(Constants.searchMovies, text: $viewModel.searchText)
                     .padding([.horizontal])
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -31,7 +31,7 @@ struct MovieListView<ViewModel: MovieListViewModelProtocol>: View {
                         }
                     }
                     .accessibilityIdentifier("searchMoviesTextField")
-                
+
                 if viewModel.filteredMovies.isEmpty {
                     Text(verbatim: Constants.connectToInternet)
                         .padding()

@@ -23,20 +23,20 @@ enum ImagesEndpoint {
 
     var dimension: String {
         switch self {
-        case .getPosterImage(_):
+        case .getPosterImage:
             "w300"
-        case .getThumbnail(_):
+        case .getThumbnail:
             "w200"
         }
     }
-    
+
     var name: String {
         switch self {
         case .getPosterImage(let name), .getThumbnail(let name):
             name
         }
     }
-    
+
     var url: URL? {
         return URL(string: "\(baseUrl)/\(dimension)\(name)")
     }

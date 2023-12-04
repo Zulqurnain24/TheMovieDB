@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MovieImageView: View {
-    
+
     var imageUrl: URL?
     var imageLoader: ImageLoader
     var imageHeight: CGFloat
     var imageWidth: CGFloat
     var cornerRadius: CGFloat
-    
+
     var body: some View {
         if let url = imageUrl {
             if let image = imageLoader.image {

@@ -14,7 +14,7 @@ struct MovieDetails: Codable, Equatable {
     let posterPath: String?
     let voteAverage: Double
     let homepage: String
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case title

@@ -10,7 +10,7 @@ import SwiftUI
 @MainActor
 protocol ImageLoaderProtocol: ObservableObject {
     var image: UIImage? { get set }
-    
+
     func set(urlString: String, type: ImageLoader.ImageType) async throws
     func populateURL(_ type: ImageLoader.ImageType) async
     func loadImage() async throws
@@ -20,39 +20,39 @@ protocol ImageLoaderProtocol: ObservableObject {
 
 @MainActor
 class ImageLoader: ObservableObject, ImageLoaderProtocol {
-    
+
     enum ImageType {
         case thumbnail
         case poster
     }
-    
+
     @Published var image: UIImage?
-    
+
     private var urlString: String?
-    
+
     private var url: URL?
-    
+
     private var persistentStoreManager: PersistentStoreManagerProtocol
-    
+
     private let networkingManager: NetworkingManagerProtocol
-    
+
     init(persistentStoreManager: PersistentStoreManagerProtocol, networkingManager: NetworkingManagerProtocol) {
         self.persistentStoreManager = persistentStoreManager
         self.networkingManager = networkingManager
     }
-    
+
     func set(urlString: String, type: ImageType) async throws {
         do {
             self.urlString = urlString
-            
+
             await populateURL(type)
-            
+
             try await loadImage()
         } catch {
             throw error
         }
     }
-    
+
     func populateURL(_ type: ImageLoader.ImageType) async {
         switch type {
         case .poster:
@@ -61,25 +61,25 @@ class ImageLoader: ObservableObject, ImageLoaderProtocol {
             self.url = ImagesEndpoint.getThumbnail(self.urlString ?? "").url
         }
     }
-    
+
     func loadImage() async throws {
         do {
             if let data = await persistentStoreManager.getObject(urlString ?? "", Data.self) {
                 self.image = UIImage(data: data)
                 return
             }
-            
+
             guard let url = self.url,
                   url.verifyUrl() else { return }
-            
+
             let data = try await networkingManager.request(url: url, session: .shared, type: Data.self)
-            
+
             if let image = UIImage(data: data) {
-                
+
                 await persistentStoreManager.setObject(urlString ?? "", value: data)
-                
+
                 self.image = image
-                
+
                 Logger.logInfo(Self.self, "Fetched image: \(image) from network and saved it in persistent store")
             }
         } catch {

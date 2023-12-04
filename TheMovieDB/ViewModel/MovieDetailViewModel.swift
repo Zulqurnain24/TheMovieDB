@@ -10,7 +10,7 @@ import SwiftUI
 protocol MovieDetailViewModelProtocol: ObservableObject {
     var movie: Movie { get }
     var movieDetails: MovieDetails? { get }
-    
+
     func fetchMovieDetails() async
 }
 
@@ -32,9 +32,9 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     func fetchMovieDetails() async {
         do {
             guard let movieDetails = try await movieRepository.getMovieDetails(for: movie.id) else { return }
-            
+
             self.movieDetails = movieDetails
-            
+
             Logger.logInfo(Self.self, "fetched movie details : \(movieDetails)")
         } catch {
             Logger.logError(Self.self, error)

@@ -15,39 +15,39 @@ protocol MovieServiceProtocol {
 // MARK: - MovieService
 
 actor MovieService: MovieServiceProtocol {
-    
+
     enum NetworkError: Error, Equatable {
         case invalidURL
         case decodingError
     }
-    
+
     private let networkingManager: NetworkingManagerProtocol
-    
+
     private let decoder: JSONDecoder
-    
-    init(networkingManager: NetworkingManagerProtocol , decoder: JSONDecoder) {
+
+    init(networkingManager: NetworkingManagerProtocol, decoder: JSONDecoder) {
         self.networkingManager = networkingManager
         self.decoder = decoder
     }
 
     func getPopularMovies(_ page: Int) async throws -> MovieResponse {
-        
+
         guard let url = MoviesEndpoint.popularMovies(page: page).url else {
             throw NetworkError.invalidURL }
-        
+
         do {
             let movieResponse = try await networkingManager.request(url: url, session: .shared, type: MovieResponse.self)
-            
+
             return movieResponse
         } catch {
             Logger.logError(Self.self, error)
-            
+
             throw error
         }
     }
 
     func getMovieDetails(for id: Int) async throws -> MovieDetails {
-        
+
         guard let url = MoviesEndpoint.movieDetails(id: id).url else {
             throw NetworkError.invalidURL }
 
@@ -56,7 +56,7 @@ actor MovieService: MovieServiceProtocol {
             return movieDetails
         } catch {
             Logger.logError(Self.self, error)
-            
+
             throw error
         }
     }

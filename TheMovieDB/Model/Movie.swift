@@ -15,7 +15,7 @@ struct Movie: Identifiable, Codable, Hashable {
     let voteAverage: Double
     let releaseDate: String
     let thumbnailPath: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case title

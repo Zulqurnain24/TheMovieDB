@@ -10,7 +10,7 @@
 struct MovieResponse: Codable, Equatable {
     let movies: [Movie]
     let totalPages: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case movies = "results"
         case totalPages = "total_pages"
